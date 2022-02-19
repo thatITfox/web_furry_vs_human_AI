@@ -10,7 +10,7 @@ labels = ['furry', 'human']
 app = Flask(__name__)
 
 # load the pytorch script model
-model = torch.load('furry_vs_human_ai_torchscript.pt')
+model = torch.load('furry_vs_human_ai_v2.pt')
 model.eval()
 
 @app.route('/', methods=['GET', 'POST'])
