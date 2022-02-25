@@ -10,7 +10,7 @@ labels = ['furry', 'human']
 app = Flask(__name__)
 
 # load the pytorch script model
-model = torch.load('furry_vs_human_ai_new_and_improved.pt')
+model = torch.load('furry_vs_human_ai_torchscript.pt')
 model.eval()
 
 @app.route('/', methods=['GET', 'POST'])
@@ -26,9 +26,9 @@ def index():
         # turn the image to gray scale
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         # resize image
-        image = cv2.resize(image, (100, 100))
+        image = cv2.resize(image, (50, 50))
         # convert image to tensor
-        output = model(torch.from_numpy(image).float().reshape(1, 1, 100, 100)/255)
+        output = model(torch.from_numpy(image).float().reshape(1, 1, 50, 50)/255)
         print(output)
         return("{}".format(labels[output.argmax()]))
     else:
