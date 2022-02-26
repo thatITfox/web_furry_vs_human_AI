@@ -30,7 +30,8 @@ def index():
         # convert image to tensor
         output = model(torch.from_numpy(image).float().reshape(1, 1, 100, 100)/255)
         print(output)
-        return("{}".format(labels[output.argmax()]))
+        # return("{}".format(labels[output.argmax()]))
+        return render_template('results.html', prediction=labels[output.argmax()])
     else:
         return render_template('index.html')
 
